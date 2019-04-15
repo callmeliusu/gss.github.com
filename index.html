@@ -43,6 +43,29 @@
         });
     });
 </script>
+ <script>
+    $(document).ready(function() {
+        var voice = document.getElementById('bgMusic');
+        //判斷 WeixinJSBridge 是否存在
+        if (typeof WeixinJSBridge == "object" && typeof WeixinJSBridge.invoke == "function") {
+            voice.play();
+        } else {
+            //監聽客户端抛出事件"WeixinJSBridgeReady"
+            if (document.addEventListener) {
+                document.addEventListener("WeixinJSBridgeReady", function() {
+                    voice.play();
+                }, false);
+            } else if (document.attachEvent) {
+                document.attachEvent("WeixinJSBridgeReady", function() {
+                    voice.play();
+                });
+                document.attachEvent("onWeixinJSBridgeReady", function() {
+                    voice.play();
+                });
+            }
+        }
+    });
+    </script>
 
 <nav class="absolute">
     <div >
